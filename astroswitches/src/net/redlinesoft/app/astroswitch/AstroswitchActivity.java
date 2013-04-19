@@ -1,12 +1,15 @@
 package net.redlinesoft.app.astroswitch;
 
-
+ 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -121,6 +124,38 @@ public class AstroswitchActivity extends Activity {
 		mMediaPlayer.start();
 		
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(Menu.NONE,1,Menu.NONE,R.string.menu_about);
+		menu.add(Menu.NONE,2,Menu.NONE,R.string.menu_exit);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		/*
+		 * exit
+		 */
+		if(item.getItemId() == 2){
+    		this.finish();
+    		return true;
+    	}
+		
+		/*
+		 * load about activity
+		 */
+		if(item.getItemId() == 1){
+			Intent intent = new Intent(AstroswitchActivity.this,AboutActivity.class);
+            startActivity(intent);
+    		return true;
+    	}
+		 
+		
+    	return false;
+	}
+
 
 	public class ImageAdapter extends BaseAdapter {
 		private Context mContext;
